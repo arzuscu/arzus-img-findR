@@ -1,0 +1,43 @@
+@import 'variables.scss';
+
+.navBarDiv{
+    height: 168px;
+    margin-left: 16px;
+    margin-right: 16px;
+      
+    &__navBar{
+        display: flex;
+        // justify-content: start;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        background-color: $gold;
+    }
+}
+
+.searchBarDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 32px;
+    &__wrapper{
+        padding-bottom: 30px;
+    }
+    &__search{
+        background: url('../../Assets/Icons/PNG/Icon-search.png');
+        background-repeat: no-repeat;
+        background-position: 15px;
+        border: 1px solid silver;
+        width: 300px;
+        height: 52px;
+        border: 1px solid black;
+        border-radius: 20px;
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 40px;
+        transition: all .3s;
+    }
+    &__search:focus {
+        outline: none;
+        width: 400px;
+    }
+}
