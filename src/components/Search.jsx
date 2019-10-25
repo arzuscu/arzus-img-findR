@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Images from './Images';
 import './style/index.scss'
+import NavBar from './NavBar';
+// import MyCollection from './MyCollection';
 
 class Search extends Component {
   state = {
@@ -30,12 +32,11 @@ class Search extends Component {
     });
   };
   
-  // onAmountChange = (e, index, value) => this.setState({ amount: value });
-
   render() {
     console.log(this.state.images);
     return (
       <div>
+        <NavBar />
         <div className="searchBarDiv">
         <div className="searchBarDiv__wrapper">
             <input className="searchBarDiv__search" type="text" placeholder="Search" icon="search" 
@@ -44,6 +45,7 @@ class Search extends Component {
         </div>
         </div>
         {this.state.images.length > 0 ? (<Images images={this.state.images} />) : null}
+        {/* {this.state.images.length > 0 ? (<MyCollection images={this.state.images} />) : null} */}
       </div>
     );
   }

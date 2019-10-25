@@ -21,21 +21,13 @@ import FlatButton from 'material-ui/FlatButton';
     };
 
   render() {
-        let imageListContent;
+        let imageList;
         const { images } = this.props;
 
         if (images) {
-          imageListContent = (
+          imageList = (
             <GridList cols={5} rows={5}>
-              {images.map(img => (
-                <GridTile
-                  title={img.tags}
-                  key={img.id}
-                  subtitle={
-                    <span>
-                      by <strong>{img.user}</strong>
-                    </span>
-                  }
+              {images.map(img => (<GridTile title={img.tags} key={img.id}subtitle={ <span>by <strong>{img.user}</strong></span>}
                   actionIcon={
                     <IconButton onClick={() => this.handleOpen(img.largeImageURL)}>
                       <ZoomIn color="white" />
@@ -48,16 +40,19 @@ import FlatButton from 'material-ui/FlatButton';
             </GridList>
           );
         } else {
-          imageListContent = null;
+          imageList = null;
         }
 
         const actions = [
-          <FlatButton label="Close" primary={true} onClick={this.handleClose} />
+          <>
+          <FlatButton label="Add" primary={true} onClick={this.handleClose} />
+          <FlatButton label="Close" primary={true} onClick={this.handleClose} />  
+          </>
         ];
 
     return (
       <div>
-        {imageListContent}
+        {imageList}
         <Dialog
             actions={actions}
             modal={false}
