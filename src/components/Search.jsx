@@ -11,6 +11,7 @@ class Search extends Component {
     amount: 50,
     apiUrl: 'https://pixabay.com/api',
     apiKey: '14004053-d3ac27b4ed8b8d1bdc57ed1db',
+    id: '',
     images: []
   };
 
@@ -23,8 +24,8 @@ class Search extends Component {
         axios
           .get(
             `${this.state.apiUrl}/?key=${this.state.apiKey}&q=${
-              this.state.searchText
-            }&image_type=photo&per_page=${this.state.amount}&safesearch=true`
+              this.state.searchText}&id=${this.state.id}
+              &image_type=id&photo&per_page=${this.state.amount}&safesearch=true`
           )
           .then(res => this.setState({ images: res.data.hits }))
           .catch(err => console.log(err));
@@ -33,7 +34,7 @@ class Search extends Component {
   };
   
   render() {
-    console.log(this.state.images);
+    console.log(this.state.images.id);
     return (
       <div>
         <NavBar />
@@ -45,7 +46,7 @@ class Search extends Component {
         </div>
         </div>
         {this.state.images.length > 0 ? (<Images images={this.state.images} />) : null}
-        {/* {this.state.images.length > 0 ? (<MyCollection images={this.state.images} />) : null} */}
+        {/* <MyCollection images={this.state.images} /> */}
       </div>
     );
   }
