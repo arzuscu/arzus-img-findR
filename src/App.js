@@ -3,9 +3,9 @@ import './App.css';
 import NavBar from './components/NavBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Search from './components/Search';
-// import MyCollection from './components/MyCollection';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import MyCollectData from './components/MyCollectData';
+// import MyCollectData from './components/MyCollectData';
+import MyCollection from './components/MyCollection';
 
 function App() {
   return (
@@ -24,8 +24,8 @@ function App() {
             return (
               <>
                 <NavBar />
-                {/* <MyCollection component={ MyCollection } {...props}/> */}
-                <MyCollectData component={ MyCollectData } {...props}/>
+                <MyCollection component={ MyCollection } {...props}/>
+                {/* <MyCollectData component={ MyCollectData } {...props}/> */}
               </>
             )
           }}/>

@@ -11,10 +11,17 @@ import FlatButton from 'material-ui/FlatButton';
  class MyCollection extends Component {
     state = {
         open: false,
-        currentImg: ''
+        currentImg: '',
+        myCollectImages :[]
+
       };
 
-      handleOpen = img => {
+    componentWillMount(){
+       const myCollectImages= JSON.parse(window.localStorage.getItem('myCollection'))
+       this.setState({ myCollectImages : myCollectImages })
+        
+      }
+    handleOpen = img => {
       this.setState({ open: true, currentImg: img });
     };
 
@@ -23,17 +30,21 @@ import FlatButton from 'material-ui/FlatButton';
     };
 
     render() {
-        console.log(this.props.data);
+        console.log("myCollectImages",this.state.myCollectImages);
+   
         let imageList;
-        const data = this.props.data;
+        const myCollectImages = this.state.myCollectImages
+       
+        
 
-        if (data) {
+        if (myCollectImages) {
+
           imageList = (
             <GridList cols={5} rows={5}>
-              {data.map(img => (<GridTile title={img.title} key={img.id} subtitle={ <span>by <strong>{img.channel}</strong></span>}
+               {myCollectImages.map(img => (<GridTile title={img.tags} key={img.id} subtitle={ <span>by <strong>{img.user}</strong></span>}
                   actionIcon={
-                    <IconButton onClick={() => this.handleOpen(img.largeImageURL)}>
-                      <ZoomIn color="white" />
+                    <IconButton onClick={() => this.handleOpen(img.largeImageURL, img.id)}>
+                      <ZoomIn  color="white" />
                     </IconButton>
                   }
                 >
@@ -48,7 +59,6 @@ import FlatButton from 'material-ui/FlatButton';
 
           const actions = [
             <>
-            {/* <FlatButton name ="add" label="Add" primary={true} onClick={this.handleClose} /> */}
             <FlatButton label="Close" primary={true} onClick={this.handleClose} />  
             </>
           ];
@@ -57,7 +67,7 @@ import FlatButton from 'material-ui/FlatButton';
             <div>
                 { imageList }
                 <Dialog
-                actions={actions}
+                    actions={actions}
                     modal={false}
                     open={this.state.open}
                     onRequestClose={this.handleClose}>
@@ -68,6 +78,6 @@ import FlatButton from 'material-ui/FlatButton';
     }
 }
 MyCollection.propTypes = {
-    data: PropTypes.array.isRequired
+  myCollectImages: PropTypes.array.isRequired
   };
 export default MyCollection;

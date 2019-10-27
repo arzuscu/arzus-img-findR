@@ -16,6 +16,7 @@ class Search extends Component {
   };
 
   onTextChange = e => {
+    
     const val = e.target.value;
     this.setState({ [e.target.name]: val }, () => {
       if (val === '') {
@@ -23,18 +24,25 @@ class Search extends Component {
       } else {
         axios
           .get(
-            `${this.state.apiUrl}/?key=${this.state.apiKey}&q=${
+           /*  `${this.state.apiUrl}/?key=${this.state.apiKey}&q=${
               this.state.searchText}&id=${this.state.id}
-              &image_type=id&photo&per_page=${this.state.amount}&safesearch=true`
+              &image_type=id&photo&per_page=${this.state.amount}&safesearch=true` */
+            `${this.state.apiUrl}/?key=${this.state.apiKey}&q=${
+                this.state.searchText}
+                &image_type=id&photo&per_page=${this.state.amount}&safesearch=true`
           )
-          .then(res => this.setState({ images: res.data.hits }))
+          .then(res => this.setState({ 
+            images: res.data.hits,
+            id: res.data.hits.id
+           }))
           .catch(err => console.log(err));
       }
     });
   };
   
   render() {
-    console.log(this.state.images.id);
+    console.log(this.state.images);
+    /* console.log(this.state.id); */ 
     return (
       <div>
         <NavBar />
@@ -46,7 +54,6 @@ class Search extends Component {
         </div>
         </div>
         {this.state.images.length > 0 ? (<Images images={this.state.images} />) : null}
-        {/* <MyCollection images={this.state.images} /> */}
       </div>
     );
   }
