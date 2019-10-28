@@ -13,7 +13,7 @@ class Search extends Component {
   
   onTextChange = e => {
     const apiUrl = "https://pixabay.com/api";
-    const apiKey= "14004053-d3ac27b4ed8b8d1bdc57ed1db";
+    const apiKey= ""; //please put your pixabay api key!
     const val = e.target.value;
     this.setState({ [e.target.name]: val }, () => {
       if (val === "") {
